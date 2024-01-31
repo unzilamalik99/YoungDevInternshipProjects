@@ -1,10 +1,13 @@
 SignUP and Login Page
 
 <img src="https://github.com/unzilamalik99/YoungDevInternshipProjects/assets/136435499/c72a701c-03da-4c22-a9ac-656e36483d01" width="600">
+<br/>
 
 <img src="https://github.com/unzilamalik99/YoungDevInternshipProjects/assets/136435499/fc1b973d-f417-4246-9d5a-62cb83a4a36a" width="600">
+<br/>
 
 <img src="https://github.com/unzilamalik99/YoungDevInternshipProjects/assets/136435499/4fa88c8b-bc9a-400d-817b-a545a89a405b" width="600">
+<br/>
 
 Registration Form
 
