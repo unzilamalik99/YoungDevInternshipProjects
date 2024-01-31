@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration Form</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom, #17002ce8, #008a73d0);
+          
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #registration-container {
+    background: linear-gradient(to bottom, #f2edf33a, #f1ffff5b);
+            color: antiquewhite;
+            box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 400px;
+            padding: 20px;
+            text-align: center;
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        #registration-container:hover {
+            box-shadow: 20 40 40px rgba(0, 0, 0, 0.2);
+        }
+
+      
+
+        label {
+            font-size: 16px;
+            margin-bottom: 8px;
+            display: block;
+            color: #ffffff;
+            display: flex;
+            align-items: start;
+            justify-content: start;
+            
+         } 
+         ::placeholder{
+            color :black
+         }
+
+      button {
+    background-color: #030808; 
+     color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 20px;
+    font-size: 20px;
+}  
+        input[type=text], input[type=password] ,input[type=email]{
+    transition: border-color 0.3s ease-in-out;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 15px
+}
+        input:focus {
+            border-color: #010202; /* Match the button background color */
+        }
+
+      
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .success {
+            color: #008000;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .name{
+            background: linear-gradient(to bottom, #7783b6e8, #15332ed0);
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 0;
+  
+        }
+    </style>
+</head>
+<body>
+    <div id="registration-container">
+        <h2 class="name">User Registration Form</h2>
+        <form>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+            <p class="error" id="nameError"></p>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+            <p class="error" id="emailError"></p>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+            <p class="error" id="passwordError"></p>
+
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" id="confirm-password" name="confirm-password" required>
+            <p class="error" id="confirmPasswordError"></p>
+<button type="submit" > Register</button>
+            <p class="success" id="successMessage"></p>
+        </form>
+    </div>
+
+    <script>
+        const form = document.querySelector('form');
+        const passwordInput = document.querySelector('#password');
+        const confirmPasswordInput = document.querySelector('#confirm-password');
+        const successMessage = document.getElementById('successMessage');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            validateForm();
+        });
+
+        function validateForm() {
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const nameError = document.getElementById('nameError');
+            const emailError = document.getElementById('emailError');
+            const passwordError = document.getElementById('passwordError');
+            const confirmPasswordError = document.getElementById('confirmPasswordError');
+
+            nameError.textContent = '';
+            emailError.textContent = '';
+            passwordError.textContent = '';
+            confirmPasswordError.textContent = '';
+            successMessage.textContent = '';
+
+            if (!nameInput.value.trim()) {
+                nameError.textContent = 'Name is required';
+            }
+
+            if (!emailInput.value.trim()) {
+                emailError.textContent = 'Email is required';
+            } else if (!isValidEmail(emailInput.value.trim())) {
+                emailError.textContent = 'Invalid email format';
+            }
+
+            if (!passwordInput.value.trim()) {
+                passwordError.textContent = 'Password is required';
+            }
+
+            if (passwordInput.value !== confirmPasswordInput.value) {
+                confirmPasswordError.textContent = 'Passwords do not match';
+            } else {
+                successMessage.textContent = 'Registration successful!';
+                clearForm();
+            }
+        }
+
+        function isValidEmail(email) {
+            // Simple email validation, you can use a more robust method
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function clearForm() {
+            form.reset();
+            setTimeout(() => {
+                successMessage.textContent = '';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
